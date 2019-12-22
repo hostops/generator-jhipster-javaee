@@ -1,0 +1,10 @@
+{
+  "generator-jhipster-blueprint": {
+    "promptValues": {
+      "githubName": "jakobhostnik",
+      "authorName": "Jakob Hostnik",
+      "authorEmail": "jakob@hostnik.si",
+      "authorUrl": "jakob.hostnik.si"
+    }
+  }
+}
