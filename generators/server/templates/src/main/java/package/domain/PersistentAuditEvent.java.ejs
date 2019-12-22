@@ -51,6 +51,29 @@ import static org.springframework.data.couchbase.core.mapping.id.GenerationStrat
 @Table(name = "<%= jhiTablePrefix %>_persistent_audit_event")<% } %><% if (databaseType === 'mongodb') { %>
 @Document(collection = "<%= jhiTablePrefix %>_persistent_audit_event")<% } %><% if (databaseType === 'couchbase') { %>
 @Document<% } %>
+
+@NamedQueries({
+    @NamedQuery(name = "PersistentAuditEvent.findAll",
+        query = "SELECT event FROM PersistentAuditEvent event"
+    ),
+    @NamedQuery(name = "PersistentAuditEvent.findById",
+        query = "SELECT event FROM PersitentAuditEvent event WHERE event.id = :id"
+    ),
+    <%_ if (!reactive) { _%>
+    @NamedQuery(name = "PersistentAuditEvent.findByPrincipal",
+        query = "SELECT event FROM PersitentAuditEvent event WHERE event.principal = :principal"
+    ),
+    @NamedQuery(name = "PersistentAuditEvent.findByPrincipalAndDateAfterAndType",
+        query = "SELECT event FROM PersitentAuditEvent event WHERE event.principal = :principal AND event.auditEventDate AFTER :after AND event.eventType=:type"
+    ),
+    <%_ } _%>
+    @NamedQuery(name = "PersistentAuditEvent.findByDateBetween",
+        query = "SELECT event FROM PersitentAuditEvent event WHERE event.auditEventDate BETWEEN :fromDate AND :toDate"
+    ),
+    @NamedQuery(name = "PersistentAuditEvent.findByDateBefore",
+        query = "SELECT event FROM PersitentAuditEvent event WHERE event.auditEventDate BEFORE :before"
+    ),
+})
 public class PersistentAuditEvent implements Serializable {
 
     private static final long serialVersionUID = 1L;

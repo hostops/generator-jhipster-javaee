@@ -84,10 +84,22 @@ import static org.springframework.data.couchbase.core.mapping.id.GenerationStrat
 <%_ } _%>
 @NamedQueries({
     @NamedQuery(name = "PersistentToken.findAll",
-        query = "SELECT user FROM PersistentToken user"
+        query = "SELECT token FROM PersistentToken token"
     ),
     @NamedQuery(name = "PersistentToken.findById",
-        query = "SELECT user FROM <%= asEntity('User') %> user where user.id = :id"
+        query = "SELECT token FROM PersistentToken token WHERE token.id = :id"
+    ),
+    @NamedQuery(name = "PersistentToken.findBySeries",
+        query = "SELECT token FROM PersistentToken token WHERE token.series = :series"
+    ),
+    @NamedQuery(name = "PersistentToken.deleteBySeries",
+        query = "DETELE token FROM PersistentToken token WHERE token.series = :series"
+    ),
+    @NamedQuery(name = "PersistentToken.findByLogin",
+        query = "SELECT token FROM PersistentToken token WHERE token.login = :login"
+    ),
+    @NamedQuery(name = "PersistentToken.findByTokenDateBefore",
+        query = "SELECT token FROM PersistentToken token WHERE token.tokenDate BEFORE :tokenDate"
     )
 })
 public class PersistentToken implements Serializable {

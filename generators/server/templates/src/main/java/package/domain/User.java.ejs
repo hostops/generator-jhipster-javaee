@@ -87,10 +87,39 @@ import static <%=packageName%>.config.Constants.ID_DELIMITER;
     @NamedQuery(name = "<%= asEntity('User') %>.findAll",
         query = "SELECT user FROM <%= asEntity('User') %> user"
     ),
-    @NamedQuery(name = "<%= asEntity('User') %>.findById",
-        query = "SELECT user FROM <%= asEntity('User') %> user where user.id = :id"
+    <%_ if (authenticationType !== 'oauth2') { _%>
+    @NamedQuery(name = "<%= asEntity('user') %>.findByActivationKey",
+        query = "SELECT user FROM <%= asEntity('User') %> user WHERE user.activationKey= :activationKey"
+    ),
+    @NamedQuery(name = "<%= asEntity('User') %>.findByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore",
+        query = "SELECT user FROM <%= asEntity('User') %> user WHERE user.activated IS FALSE AND user.activationKey IS NOT NULL AND user.createdDate BEFORE :createdDate"
+    ),
+    @NamedQuery(name = "<%= asEntity('User') %>.findByResetKey",
+        query = "SELECT user FROM <%= asEntity('User') %> user where user.resetKey= :resetKey"
+    ),
+
+    <%_ } _%>
+    @NamedQuery(name = "<%= asEntity('User') %>.findByEmailIgnoreCase",
+        query = "SELECT user FROM <%= asEntity('User') %> user where UPPER(user.resetKey)= UPPER(:resetKey)"
+    ),
+    @NamedQuery(name = "<%= asEntity('user') %>.findByLogin",
+        query = "SELECT user FROM <%= asEntity('User') %> user WHERE user.login= :login"
+    ),
+<%_ if (databaseType === 'sql') { _%>
+    @NamedQuery(name = "<%= asEntity('user') %>.findWithAuthoritiesById",
+        query = "SELECT user FROM <%= asEntity('user') %> user LEFT JOIN user.authorities WHERE user.id = :id"
+    ),
+    @NamedQuery(name = "<%= asEntity('user') %>.findWithAuthoritiesByLogin",
+        query = "SELECT user FROM <%= asEntity('user') %> user LEFT JOIN user.authorities WHERE user.login = :login"
+    ),
+    @NamedQuery(name = "<%= asEntity('user') %>.findWithAuthoritiesByEmailIgnoreCase",
+        query = "SELECT user FROM <%= asEntity('user') %> user LEFT JOIN user.authorities WHERE UPPER(user.email) = UPPER(:email)"
+    ),
+    @NamedQuery(name = "<%= asEntity('user') %>.countAllByLoginNot",
+        query = "SELECT COUNT(user) FROM <%= asEntity('user') %> user LEFT JOIN user.authorities WHERE user.login != :anonymousUser"
     )
-})
+<%_ } _%>
+    })
 public class <%= asEntity('User') %><% if (databaseType === 'sql' || databaseType === 'mongodb' || databaseType === 'couchbase') { %> extends AbstractAuditingEntity<% } %> implements Serializable {
 
     private static final long serialVersionUID = 1L;

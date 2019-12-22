@@ -22,10 +22,6 @@ package <%=packageName%>.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 <%_ } _%>
-<%_ if (databaseType === 'mongodb' || databaseType === 'couchbase') { _%>
-import org.springframework.data.annotation.Id;
-import org.springframework.data.<%= databaseType %>.core.mapping.Document;
-<%_ } _%>
 <%_ if (databaseType === 'sql') { _%>
 import javax.persistence.Entity;
 import javax.persistence.Id;
