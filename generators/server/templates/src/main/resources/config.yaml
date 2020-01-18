@@ -1,0 +1,8 @@
+kumuluzee:
+  datasources:
+    - jndi-name: jdbc/CustomersDS
+      connection-url: jdbc:postgresql://localhost:5432/customers
+      username: postgres
+      password: postgres
+      pool:
+        max-size: 20
