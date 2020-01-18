@@ -1,6 +1,6 @@
 {
   "name": "generator-jhipster-javaee",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Jhipster blueprint for JavaEE instead of spring. It supports MicroProfile and KumuluzEE",
   "keywords": [
     "yeoman-generator",
