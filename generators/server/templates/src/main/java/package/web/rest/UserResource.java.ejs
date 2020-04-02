@@ -1,0 +1,74 @@
+package <%=packageName%>.web.rest;
+
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.util.List;
+import <%=packageName%>.domain.User;
+import <%=packageName%>.service.UserService;
+
+/**
+ * @author Benjamin Kastelic, Marko Skrjanec
+ * @since 2.3.0
+ */
+@RequestScoped
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@Path("users")
+public class UserResource {
+
+    @Context
+    protected UriInfo uriInfo;
+
+    @Inject
+    private UserService userBean;
+
+    @GET
+    public Response getAllUsers() {
+        List<User> users = userBean.getUsers(createQuery());
+        return Response.ok(users).build();
+    }
+
+    @GET
+    @Path("count")
+    public Response getCount() {
+        Long count = userBean.getUserCount(createQuery());
+        return Response.ok(count).build();
+    }
+
+    @GET
+    @Path("{userId}")
+    public Response getUser(@PathParam("userId") String userId) {
+        User user = userBean.getUser(userId);
+        return user != null
+            ? Response.ok(user).build()
+            : Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @POST
+    public Response addNewUser(User user) {
+        userBean.saveUser(user);
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("{userId}")
+    public Response deleteUser(@PathParam("userId") String userId) {
+        userBean.deleteUser(userId);
+        return Response.noContent().build();
+    }
+
+    /**
+     * Helper method for parsing query parameters from uri.
+     *
+     * @return query parameters
+     */
+    private QueryParameters createQuery() {
+        return QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0).defaultLimit(10).build();
+    }
+}

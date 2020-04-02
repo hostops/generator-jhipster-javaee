@@ -9,4 +9,10 @@ kumuluzee:
   server:
     http:
       port: 8180
-
+  datasources:
+    - jndi-name: jdbc/<%=camelizedBaseName%>DS
+      connection-url: jdbc:postgresql://localhost:5432/<%=dasherizedBaseName%>
+      username: postgres
+      password: postgres
+      pool:
+        max-size: 20

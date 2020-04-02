@@ -50,6 +50,18 @@ function askForServerSideOpts() {
             ]
         },
         {
+            type: 'list',
+            name: 'prodDatabaseType',
+            message: `Which ${chalk.yellow('database type')} do you want to use?`,
+            default: 'postgresql',
+            choices: [
+                {
+                    value: 'postgresql',
+                    name: 'PostgreSQL'
+                }
+            ]
+        },
+        {
             type: 'checkbox',
             name: 'Which JavaEE technologies would you like to use?',
             message: `Do you want to use ${chalk.yellow('*config*')}?`,
@@ -98,8 +110,8 @@ function askForServerSideOpts() {
         this.packageName = prompt.packageName;
         this.mainClass = this.mainClass;
         this.databaseType = 'sql';
-        this.devDatabaseType = 'h2Memory';
-        this.prodDatabaseType = 'mysql';
+        this.devDatabaseType = prompt.prodDatabaseType;
+        this.prodDatabaseType = prompt.prodDatabaseType;
         done();
     });
 }

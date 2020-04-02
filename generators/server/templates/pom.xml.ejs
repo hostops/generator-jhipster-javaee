@@ -65,6 +65,46 @@
                     <groupId>com.kumuluz.ee</groupId>
                     <artifactId>${kumuluzee-microprofile.version}</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-core</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-servlet-jetty</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-jax-rs-jersey</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-cdi-weld</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee</groupId>
+                    <artifactId>kumuluzee-jta-narayana</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.kumuluz.ee.rest</groupId>
+                    <artifactId>kumuluzee-rest-core</artifactId>
+                    <version>1.3.0-SNAPSHOT</version>
+                </dependency>
+<%_ if (prodDatabaseType === 'postgresql') { _%>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>42.0.0</version>
+                </dependency>
+<%_ } _%>
             </dependencies>
         </profile>
     </profiles>

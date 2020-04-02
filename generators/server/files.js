@@ -22,7 +22,6 @@ const constants = require('../generator-javaee-constants');
 
 /* Constants use throughout */
 const INTERPOLATE_REGEX = constants.INTERPOLATE_REGEX;
-const DOCKER_DIR = constants.DOCKER_DIR;
 const SERVER_MAIN_RES_DIR = constants.SERVER_MAIN_RES_DIR;
 const SERVER_MAIN_SRC_DIR = constants.SERVER_MAIN_SRC_DIR;
 /**
@@ -67,12 +66,16 @@ const serverFiles = {
             path: SERVER_MAIN_SRC_DIR,
             templates: [
                 {
-                    file: 'package/web/rest/ServiceController.java',
-                    renameTo: generator => `${generator.javaDir}web/rest/${generator.asEntity('ServiceController')}.java`
+                    file: 'package/web/rest/UserResource.java',
+                    renameTo: generator => `${generator.javaDir}web/rest/${generator.asEntity('UserResource')}.java`
                 },
                 {
-                    file: 'package/web/rest/ProtectedController.java',
-                    renameTo: generator => `${generator.javaDir}web/rest/${generator.asEntity('ProtectedController')}.java`
+                    file: 'package/domain/User.java',
+                    renameTo: generator => `${generator.javaDir}domain/${generator.asEntity('User')}.java`
+                },
+                {
+                    file: 'package/service/UserService.java',
+                    renameTo: generator => `${generator.javaDir}service/${generator.asEntity('UserService')}.java`
                 },
                 {
                     file: 'package/Application.java',
@@ -126,7 +129,7 @@ const serverFiles = {
         {
             condition: generator => generator.databaseType === 'sql',
             path: SERVER_MAIN_RES_DIR,
-            templates: ['config.yaml', 'META-INF/beans.xml', '.gitkeep']
+            templates: ['config.yaml', 'META-INF/beans.xml', 'META-INF/persistence.xml']
         }
     ],
     serverJavaServiceError: [],
