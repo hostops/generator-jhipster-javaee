@@ -48,6 +48,18 @@
                         </executions>
                     </plugin>
                 </plugins>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>3.8.8</version>
+                    <configuration>
+                        <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/<%=dasherizedBaseName%></url>
+                        <username>postgres</username>
+                        <password>postgres</password>
+                    </configuration>
+                </plugin>
             </build>
             <dependencyManagement>
                 <dependencies>
@@ -84,10 +96,6 @@
                 <dependency>
                     <groupId>com.kumuluz.ee</groupId>
                     <artifactId>kumuluzee-cdi-weld</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>com.kumuluz.ee</groupId>
-                    <artifactId>kumuluzee-jpa-eclipselink</artifactId>
                 </dependency>
                 <dependency>
                     <groupId>com.kumuluz.ee</groupId>

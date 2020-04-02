@@ -2,13 +2,13 @@ package <%=packageName%>.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import javax.validation.constraints.Size;
 
 /**
- * @author Benjamin Kastelic
- * @since 2.3.
+ * @author Jakob Hostnik
  */
 @Entity
-@Table(name = "user")
+@Table(name = "jhi_user")
 @NamedQueries({
     @NamedQuery(
         name = "User.findUsers",
@@ -25,6 +25,21 @@ public class User implements Serializable {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "password_hash")
+    private String passwordHash;
+    @Column(name = "email")
+    private String email;
+    @Size(max = 255)
+    @Column(name = "image_url")
+    private String imageUrl;
+    @Column(name = "activated")
+    private Boolean activated;
+    @Column(name = "lang_key")
+    private String langKey;
+    @Column(name = "activation_key")
+    private String activationKey;
+    @Column(name = "reset_key")
+    private String resetKey;
 
     public Integer getId() {
         return id;
@@ -48,5 +63,61 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Boolean getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
+    }
+
+    public String getLangKey() {
+        return langKey;
+    }
+
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
     }
 }
