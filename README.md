@@ -90,7 +90,7 @@ jhipster -d --blueprint javaee
 
 # License
 
-Apache-2.0 © [Jakob Hostnik](jakob.hostnik.si)
+Apache-2.0 © [Jakob Hostnik](https://jakob.hostnik.si)
 
 
 [npm-image]: https://img.shields.io/npm/v/generator-jhipster-javaee.svg
