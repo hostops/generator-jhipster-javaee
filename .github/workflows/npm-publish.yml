@@ -45,11 +45,10 @@ jobs:
     - name: Publish npm 
       uses: mikeal/merge-release@master
       env:
-        NPM_REGISTRY_URL: https://registry.npmjs.org
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
   publish-github:
-    name: Publish
+    name: Publish github
     needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -71,4 +70,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_REGISTRY_URL: https://npm.pkg.github.com
+        NPM_REGISTRY_URL: npm.pkg.github.com
