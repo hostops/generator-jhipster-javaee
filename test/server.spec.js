@@ -11,14 +11,14 @@ describe('Subgenerator server of javaee JHipster blueprint', () => {
                     'from-cli': true,
                     skipInstall: true,
                     blueprint: 'javaee',
-                    skipChecks: true
+                    skipChecks: true,
                 })
                 .withGenerators([
                     [
                         require('../generators/server'), // eslint-disable-line global-require
                         'jhipster-javaee:server',
-                        path.join(__dirname, '../generators/server/index.js')
-                    ]
+                        path.join(__dirname, '../generators/server/index.js'),
+                    ],
                 ])
                 .withPrompts({
                     baseName: 'sampleMysql',
@@ -33,7 +33,7 @@ describe('Subgenerator server of javaee JHipster blueprint', () => {
                     nativeLanguage: 'en',
                     languages: ['fr', 'de'],
                     buildTool: 'maven',
-                    rememberMeKey: '2bb60a80889aa6e6767e9ccd8714982681152aa5'
+                    rememberMeKey: '2bb60a80889aa6e6767e9ccd8714982681152aa5',
                 })
                 .on('end', done);
         });

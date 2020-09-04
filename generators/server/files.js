@@ -40,9 +40,9 @@ const serverFiles = {
                 { file: '.mvn/wrapper/maven-wrapper.jar', method: 'copy', noEjs: true },
                 { file: '.mvn/wrapper/maven-wrapper.properties', method: 'copy', noEjs: true },
                 { file: '.mvn/wrapper/MavenWrapperDownloader.java', method: 'copy', noEjs: true },
-                { file: 'pom.xml', options: { interpolate: INTERPOLATE_REGEX } }
-            ]
-        }
+                { file: 'pom.xml', options: { interpolate: INTERPOLATE_REGEX } },
+            ],
+        },
     ],
     serverResource: [
         {
@@ -52,11 +52,14 @@ const serverFiles = {
                 {
                     file: 'config/liquibase/changelog/initial_schema.xml',
                     renameTo: () => 'config/liquibase/changelog/00000000000000_initial_schema.xml',
-                    options: { interpolate: INTERPOLATE_REGEX }
+                    options: { interpolate: INTERPOLATE_REGEX },
                 },
-                'config/liquibase/master.xml'
-            ]
-        }
+                'config/liquibase/data/user.csv',
+                'config/liquibase/data/user_authority.csv',
+                'config/liquibase/data/authority.csv',
+                'config/liquibase/master.xml',
+            ],
+        },
     ],
     serverJavaAuthConfig: [],
     serverJavaGateway: [],
@@ -67,22 +70,26 @@ const serverFiles = {
             templates: [
                 {
                     file: 'package/web/rest/UserResource.java',
-                    renameTo: generator => `${generator.javaDir}web/rest/${generator.asEntity('UserResource')}.java`
+                    renameTo: generator => `${generator.javaDir}web/rest/${generator.asEntity('UserResource')}.java`,
                 },
                 {
                     file: 'package/domain/User.java',
-                    renameTo: generator => `${generator.javaDir}domain/${generator.asEntity('User')}.java`
+                    renameTo: generator => `${generator.javaDir}domain/${generator.asEntity('User')}.java`,
+                },
+                {
+                    file: 'package/domain/Authority.java',
+                    renameTo: generator => `${generator.javaDir}domain/${generator.asEntity('Authority')}.java`,
                 },
                 {
                     file: 'package/service/UserService.java',
-                    renameTo: generator => `${generator.javaDir}service/${generator.asEntity('UserService')}.java`
+                    renameTo: generator => `${generator.javaDir}service/${generator.asEntity('UserService')}.java`,
                 },
                 {
                     file: 'package/Application.java',
-                    renameTo: generator => `${generator.javaDir}${generator.mainClass}.java`
-                }
-            ]
-        }
+                    renameTo: generator => `${generator.javaDir}${generator.mainClass}.java`,
+                },
+            ],
+        },
         // ,
         // {
         //     path: SERVER_MAIN_SRC_DIR,
@@ -129,8 +136,8 @@ const serverFiles = {
         {
             condition: generator => generator.databaseType === 'sql',
             path: SERVER_MAIN_RES_DIR,
-            templates: ['config.yaml', 'META-INF/beans.xml', 'META-INF/persistence.xml']
-        }
+            templates: ['config.yaml', 'META-INF/beans.xml', 'META-INF/persistence.xml'],
+        },
     ],
     serverJavaServiceError: [],
     serverJavaService: [],
@@ -138,7 +145,7 @@ const serverFiles = {
     serverJavaWeb: [],
     serverJavaWebsocket: [],
     serverTestFw: [],
-    serverJavaUserManagement: []
+    serverJavaUserManagement: [],
 };
 
 function writeFiles() {
@@ -154,11 +161,11 @@ function writeFiles() {
         },
         writeFiles() {
             this.writeFilesToDisk(serverFiles, this, false, '');
-        }
+        },
     };
 }
 
 module.exports = {
     writeFiles,
-    serverFiles
+    serverFiles,
 };

@@ -35,7 +35,7 @@ module.exports = class extends ServerGenerator {
                 this.configOptions.databaseType = this.databaseType;
                 this.configOptions.devDatabaseType = this.devDatabaseType;
                 this.configOptions.prodDatabaseType = this.prodDatabaseType;
-            }
+            },
         };
     }
 
@@ -61,7 +61,7 @@ module.exports = class extends ServerGenerator {
                     // set to english when translation is set to false
                     this.nativeLanguage = 'en';
                 }
-            }
+            },
         };
     }
 

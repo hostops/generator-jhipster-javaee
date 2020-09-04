@@ -50,42 +50,42 @@ module.exports = class extends EntityServerGenerator {
          * ```
          */
         // Here we are not overriding this phase and hence its being handled by JHipster
-        //return super._initializing();
+        // return super._initializing();
     }
 
     get prompting() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._prompting();
+        // return super._prompting();
     }
 
     get configuring() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._configuring();
+        // return super._configuring();
     }
 
     get default() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._default();
+        // return super._default();
     }
 
     get writing() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._writing();
+        // return super._writing();
     }
 
     get install() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._install();
+        // return super._install();
     }
 
     get end() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return [];
-        //return super._end();
+        // return super._end();
     }
 };

@@ -35,7 +35,7 @@ function askForServerSideOpts() {
                     : 'The package name you have provided is not a valid Java package name.',
             message: 'What is your default Java package name?',
             default: 'com.mycompany.myapp',
-            store: true
+            store: true,
         },
         {
             type: 'list',
@@ -45,9 +45,9 @@ function askForServerSideOpts() {
             choices: [
                 {
                     value: 'kumuluzee',
-                    name: 'KumuluzEE'
-                }
-            ]
+                    name: 'KumuluzEE',
+                },
+            ],
         },
         {
             type: 'list',
@@ -57,9 +57,9 @@ function askForServerSideOpts() {
             choices: [
                 {
                     value: 'postgresql',
-                    name: 'PostgreSQL'
-                }
-            ]
+                    name: 'PostgreSQL',
+                },
+            ],
         },
         {
             type: 'checkbox',
@@ -69,38 +69,38 @@ function askForServerSideOpts() {
             choices: [
                 {
                     value: 'config',
-                    name: 'Config'
+                    name: 'Config',
                 },
                 {
                     value: 'jwtAuth',
-                    name: 'JWT Authentication'
+                    name: 'JWT Authentication',
                 },
                 {
                     value: 'healthChecks',
-                    name: 'Health Checks'
+                    name: 'Health Checks',
                 },
                 {
                     value: 'openTracing',
-                    name: 'Open Tracing'
+                    name: 'Open Tracing',
                 },
                 {
                     value: 'faultTolerance',
-                    name: 'Fault Tolerance'
+                    name: 'Fault Tolerance',
                 },
                 {
                     value: 'metrics',
-                    name: 'Metrics'
+                    name: 'Metrics',
                 },
                 {
                     value: 'openApi',
-                    name: 'Open API'
+                    name: 'Open API',
                 },
                 {
                     value: 'typeSafe',
-                    name: 'Type Safe'
-                }
-            ]
-        }
+                    name: 'Type Safe',
+                },
+            ],
+        },
     ];
 
     const done = this.async();
@@ -108,7 +108,7 @@ function askForServerSideOpts() {
     this.prompt(prompts).then(prompt => {
         this.microProfileRuntime = prompt.microProfileRuntime;
         this.packageName = prompt.packageName;
-        this.mainClass = this.mainClass;
+        this.mainClass = prompt.mainClass;
         this.databaseType = 'sql';
         this.devDatabaseType = prompt.prodDatabaseType;
         this.prodDatabaseType = prompt.prodDatabaseType;
@@ -118,5 +118,5 @@ function askForServerSideOpts() {
 
 module.exports = {
     askForModuleName,
-    askForServerSideOpts
+    askForServerSideOpts,
 };

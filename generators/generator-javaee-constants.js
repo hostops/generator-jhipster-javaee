@@ -12,7 +12,7 @@ const constants = {
     SERVER_MAIN_SRC_DIR,
     SERVER_MAIN_RES_DIR,
     SERVER_TEST_SRC_DIR,
-    SERVER_TEST_RES_DIR
+    SERVER_TEST_RES_DIR,
 };
 
 module.exports = constants;

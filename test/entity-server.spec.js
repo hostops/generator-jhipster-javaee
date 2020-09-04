@@ -15,14 +15,14 @@ describe('Subgenerator entity-server of javaee JHipster blueprint', () => {
                     'from-cli': true,
                     skipInstall: true,
                     blueprint: 'javaee',
-                    skipChecks: true
+                    skipChecks: true,
                 })
                 .withGenerators([
                     [
                         require('../generators/entity-server'), // eslint-disable-line global-require
                         'jhipster-javaee:entity-server',
-                        path.join(__dirname, '../generators/entity-server/index.js')
-                    ]
+                        path.join(__dirname, '../generators/entity-server/index.js'),
+                    ],
                 ])
                 .withArguments(['foo'])
                 .withPrompts({
@@ -30,7 +30,7 @@ describe('Subgenerator entity-server of javaee JHipster blueprint', () => {
                     relationshipAdd: false,
                     dto: 'no',
                     service: 'no',
-                    pagination: 'infinite-scroll'
+                    pagination: 'infinite-scroll',
                 })
                 .on('end', done);
         });

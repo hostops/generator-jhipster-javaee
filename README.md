@@ -95,7 +95,7 @@ Apache-2.0 © [Jakob Hostnik](jakob.hostnik.si)
 
 [npm-image]: https://img.shields.io/npm/v/generator-jhipster-javaee.svg
 [npm-url]: https://npmjs.org/package/generator-jhipster-javaee
-[travis-image]: https://travis-ci.org/jakobhostnik/generator-jhipster-javaee.svg?branch=master
-[travis-url]: https://travis-ci.org/jakobhostnik/generator-jhipster-javaee
-[daviddm-image]: https://david-dm.org/jakobhostnik/generator-jhipster-javaee.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/jakobhostnik/generator-jhipster-javaee
+[travis-image]: https://travis-ci.org/hostops/generator-jhipster-javaee.svg?branch=master
+[travis-url]: https://travis-ci.org/hostops/generator-jhipster-javaee
+[daviddm-image]: https://david-dm.org/hostops/generator-jhipster-javaee.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/hostops/generator-jhipster-javaee
