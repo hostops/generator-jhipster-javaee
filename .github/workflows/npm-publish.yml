@@ -24,11 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: npm.pkg.github.com
-      - run: npm ci
       - uses: mikeal/merge-release@master
         env:
             NPM_REGISTRY_URL: registry.npmjs.org
@@ -39,12 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: npm.pkg.github.com
-      - run: npm ci
       - uses: mikeal/merge-release@master
         env:
             NPM_REGISTRY_URL: npm.pkg.github.com
