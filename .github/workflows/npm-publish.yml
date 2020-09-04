@@ -24,7 +24,31 @@ jobs:
       run: npm install
     - name: Test
       run: npm_config_yes=true npx best-test@latest
-  publish:
+  publish-npm:
+    name: Publish npm
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache node_modules
+      id: cache-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+    - name: Build
+      if: steps.cache-modules.outputs.cache-hit != 'true'
+      run: npm install
+    - name: Test
+      run: npm_config_yes=true npx best-test@latest
+    - name: Publish npm 
+      uses: mikeal/merge-release@master
+      env:
+        NPM_REGISTRY_URL: https://registry.npmjs.org
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+  publish-github:
     name: Publish
     needs: test
     runs-on: ubuntu-latest
@@ -42,13 +66,6 @@ jobs:
       run: npm install
     - name: Test
       run: npm_config_yes=true npx best-test@latest
-
-    - name: Publish npm 
-      uses: mikeal/merge-release@master
-      env:
-        NPM_REGISTRY_URL: https://registry.npmjs.org
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - name: Publish github
       uses: mikeal/merge-release@master
       env:
