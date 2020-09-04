@@ -1,5 +1,5 @@
 # generator-jhipster-javaee
-[![NPM version][npm-image]][npm-url] [![Actions Status](https://github.com/hostops/generator-jhipster-javaee/workflows/Build,%20Test%20and%20maybe%20Publish/badge.svg)](https://github.com/hostops/jhipster-generator-javaee/actions) [![Dependency Status][daviddm-image]][daviddm-url]
+[![NPM version][npm-image]][npm-url] [![Actions Status](https://github.com/hostops/generator-jhipster-javaee/workflows/Build/badge.svg)](https://github.com/hostops/jhipster-generator-javaee/actions) [![Dependency Status][daviddm-image]][daviddm-url]
 > JHipster blueprint, Jhipster blueprint for JavaEE instead of spring. It supports MicroProfile and KumuluzEE
 
 # Introduction
