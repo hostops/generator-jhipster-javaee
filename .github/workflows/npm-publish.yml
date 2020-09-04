@@ -23,27 +23,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: hregistry.npmjs.org
       - run: npm ci
       - uses: mikeal/merge-release@master
         env:
+            NPM_REGISTRY_URL: registry.npmjs.org
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_AUTH_TOKEN: ${{secrets.npm_token}}
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: hnpm.pkg.github.com
-      - run: npm ci
       - uses: mikeal/merge-release@master
         env:
+            NPM_REGISTRY_URL: npm.pkg.github.com
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
