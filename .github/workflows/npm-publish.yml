@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: mikeal/merge-release@master
         env:
-            NPM_REGISTRY_URL: https://registry.npmjs.org
+            NPM_REGISTRY_URL: registry.npmjs.org
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_AUTH_TOKEN: ${{secrets.npm_token}}
   publish-gpr:
@@ -36,6 +36,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: mikeal/merge-release@master
         env:
-            NPM_REGISTRY_URL: https://npm.pkg.github.com
+            NPM_REGISTRY_URL: npm.pkg.github.com
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
