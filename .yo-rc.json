@@ -2,7 +2,7 @@
   "generator-jhipster-blueprint": {
     "promptValues": {
       "githubName": "hostops",
-      "authorName": "Jakob Hostnik",
+      "authorName": "HostOps",
       "authorEmail": "jakob@hostnik.si",
       "authorUrl": "jakob.hostnik.si"
     }

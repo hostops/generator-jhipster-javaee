@@ -1,11 +1,16 @@
 package <%=packageName%>.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Size;
 
 /**
- * @author Jakob Hostnik
+ * @author HostOps
  */
 @Entity
 @Table(name = "<%= jhiTablePrefix %>_user")
@@ -52,7 +57,6 @@ public class User implements Serializable {
         <%_ } else { _%>
         @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     <%_ } } _%>
-    @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
     public Integer getId() {

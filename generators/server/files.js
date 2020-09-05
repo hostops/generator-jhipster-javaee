@@ -24,6 +24,7 @@ const constants = require('../generator-javaee-constants');
 const INTERPOLATE_REGEX = constants.INTERPOLATE_REGEX;
 const SERVER_MAIN_RES_DIR = constants.SERVER_MAIN_RES_DIR;
 const SERVER_MAIN_SRC_DIR = constants.SERVER_MAIN_SRC_DIR;
+const DOCKER_DIR = constants.DOCKER_DIR;
 /**
  * The default is to use a file path string. It implies use of the template method.
  * For any other config an object { file:.., method:.., template:.. } can be used
@@ -31,7 +32,12 @@ const SERVER_MAIN_SRC_DIR = constants.SERVER_MAIN_SRC_DIR;
 const serverFiles = {
     jib: [],
     packageJson: [],
-    docker: [],
+    docker: [
+        {
+            path: DOCKER_DIR,
+            templates: ['postgresql.yml'],
+        },
+    ],
     serverBuild: [
         {
             templates: [
@@ -136,7 +142,7 @@ const serverFiles = {
         {
             condition: generator => generator.databaseType === 'sql',
             path: SERVER_MAIN_RES_DIR,
-            templates: ['config.yaml', 'META-INF/beans.xml', 'META-INF/persistence.xml'],
+            templates: ['config.yaml', 'META-INF/beans.xml', 'META-INF/persistence.xml', 'webapp/WEB-INF/web.xml'],
         },
     ],
     serverJavaServiceError: [],
