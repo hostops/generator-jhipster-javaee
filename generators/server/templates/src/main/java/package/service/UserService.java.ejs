@@ -20,7 +20,7 @@ public class UserService {
     @PersistenceContext
     private EntityManager em;
 
-    public User getUser(String userId) {
+    public User getUser(Integer userId) {
         return em.find(User.class, userId);
     }
 
@@ -43,7 +43,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUser(String userId) {
+    public void deleteUser(Integer userId) {
         User user = em.find(User.class, userId);
         if (user != null) {
             em.remove(user);

@@ -17,6 +17,9 @@
     <build>
         <finalName><%= dasherizedBaseName %></finalName>
         <plugins>
+            <%_
+            if (packagingType === 'uberjar') {
+            _%>
             <plugin>
                 <groupId>com.kumuluz.ee</groupId>
                 <artifactId>kumuluzee-maven-plugin</artifactId>
@@ -30,6 +33,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <%_ } _%>
+            <%_
+            if (packagingType === 'exploded') {
+            _%>
+            <plugin>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-maven-plugin</artifactId>
+                <version>${kumuluz.version}</version>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <%_ } _%>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
@@ -103,6 +124,16 @@
                 <artifactId>kumuluzee-rest-core</artifactId>
                 <version>1.3.0</version>
             </dependency>
+            <%_
+            if (useOpenApi) {
+            _%>
+            <dependency>
+                <groupId>com.kumuluz.ee.openapi</groupId>
+                <artifactId>kumuluzee-openapi-mp</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+            <%_ } _%>
+
             <%_
             if (prodDatabaseType === 'postgresql') {
             _%>

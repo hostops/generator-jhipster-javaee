@@ -1,4 +1,5 @@
 # <%= baseName %>
+![Maintenance](https://img.shields.io/maintenance/yes/2024.svg)
 <%_
 let clientPackageMngrName = 'Npm';
 let clientPackageMngrAddGlobal = 'install -g';
@@ -54,13 +55,19 @@ This application was generated using JHipster <%= jhipsterVersion %>, you can fi
     auto-refreshes when files change on your hard drive.
     ```
     <% if (buildTool === 'maven') { %>
+    ./mnvnw clean compile liquibase:update # run to setup database
     ./mvnw package
+    <%_
+    if (packagingType === 'uberjar') {
+    _%>
     java -jar target/<%= baseName %>.jar
     <% } %>
-    <% if (buildTool === 'gradle') { %>
-    ./gradlew -x webpack
+    <%_
+    if (packagingType === 'uberjar') {
+    _%>
+    $ java -cp target/classes:target/dependency/* com.kumuluz.ee.EeApplication
     <% } %>
-    <%= clientPackageManager %> start
+    <% } %>
     ```
     <%= clientPackageMngrName %> is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
     specifying a newer version in [package.json](package.json). You can also run `<%= clientPackageManager %> update` and `<%= clientPackageManager %> install` to manage dependencies.

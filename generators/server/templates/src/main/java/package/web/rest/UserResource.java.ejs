@@ -43,7 +43,7 @@ public class UserResource {
 
     @GET
     @Path("{userId}")
-    public Response getUser(@PathParam("userId") String userId) {
+    public Response getUser(@PathParam("userId") Integer userId) {
         User user = userBean.getUser(userId);
         return user != null
             ? Response.ok(user).build()
@@ -58,7 +58,7 @@ public class UserResource {
 
     @DELETE
     @Path("{userId}")
-    public Response deleteUser(@PathParam("userId") String userId) {
+    public Response deleteUser(@PathParam("userId") Integer userId) {
         userBean.deleteUser(userId);
         return Response.noContent().build();
     }
