@@ -48,6 +48,24 @@ function askForServerSideOpts() {
                     name: 'KumuluzEE',
                 },
             ],
+            store: true,
+        },
+        {
+            type: 'list',
+            name: 'packagingType',
+            message: `Which ${chalk.yellow('type of packaging')} do you want to use?`,
+            default: 'uberjar',
+            choices: [
+                {
+                    value: 'uberjar',
+                    name: 'Uber JAR',
+                },
+                {
+                    value: 'exploded',
+                    name: 'Exploded',
+                },
+            ],
+            store: true,
         },
         {
             type: 'list',
@@ -60,46 +78,40 @@ function askForServerSideOpts() {
                     name: 'PostgreSQL',
                 },
             ],
+            store: true,
         },
         {
-            type: 'checkbox',
-            name: 'Which JavaEE technologies would you like to use?',
-            message: `Do you want to use ${chalk.yellow('*config*')}?`,
-            default: [],
+            type: 'list',
+            name: 'authType',
+            message: `Which ${chalk.yellow('authentication type')} do you want to use?`,
+            default: 'jwtAuth',
+            store: true,
             choices: [
                 {
-                    value: 'config',
-                    name: 'Config',
-                },
-                {
                     value: 'jwtAuth',
-                    name: 'JWT Authentication',
-                },
-                {
-                    value: 'healthChecks',
-                    name: 'Health Checks',
-                },
-                {
-                    value: 'openTracing',
-                    name: 'Open Tracing',
-                },
-                {
-                    value: 'faultTolerance',
-                    name: 'Fault Tolerance',
-                },
-                {
-                    value: 'metrics',
-                    name: 'Metrics',
-                },
-                {
-                    value: 'openApi',
-                    name: 'Open API',
-                },
-                {
-                    value: 'typeSafe',
-                    name: 'Type Safe',
+                    name: 'JavaEE JWT Authentication',
                 },
             ],
+        },
+        {
+            type: 'list',
+            name: 'metricsType',
+            message: `Which ${chalk.yellow('metrics type')} do you want to use?`,
+            default: 'javaeeMetrics',
+            store: true,
+            choices: [
+                {
+                    value: 'javaeeMetrics',
+                    name: 'JavaEE metrics',
+                },
+            ],
+        },
+        {
+            type: 'confirm',
+            name: 'useOpenApi',
+            message: `Do you want to use ${chalk.yellow('OpenAPI')} for documentation?`,
+            default: true,
+            store: true,
         },
     ];
 
@@ -111,6 +123,9 @@ function askForServerSideOpts() {
         this.mainClass = prompt.mainClass;
         this.databaseType = 'sql';
         this.devDatabaseType = prompt.prodDatabaseType;
+        this.prodDatabaseType = prompt.prodDatabaseType;
+        this.packagingType = prompt.packagingType;
+        this.useOpenApi = prompt.useOpenApi;
         this.prodDatabaseType = prompt.prodDatabaseType;
         done();
     });
