@@ -5,6 +5,14 @@
 # Introduction
 
 This is a [JHipster](https://www.jhipster.tech/) blueprint, that is meant to be used in a JHipster application.
+This blueprint with jhipster project allows you to generate code for microservice with backup written in JavaEE framework.
+We will try to provide support for all JavaEE modules using best industrial practices.
+Forget about hard setup of JavaEE project and jump directly into coding.
+
+When you will start generating project you will be asked few questions about your preffered architecture and we will generate whole project for you.
+For more information please check [JHipster](https://www.jhipster.tech/)
+
+
 
 # Prerequisites
 
