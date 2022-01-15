@@ -43,7 +43,7 @@
     "prettier": "2.1.1",
     "randexp": "0.5.3",
     "semver": "7.3.2",
-    "shelljs": "0.8.4",
+    "shelljs": "0.8.5",
     "through2": "4.0.2",
     "yeoman-environment": "2.10.3",
     "yeoman-generator": "4.12.0"
